@@ -6,7 +6,8 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.input.TextFieldValue
 
-class BMRConfig {
+class BMRConfig(userStuff: UserData) {
+
 
     @Composable
     fun DatosInicio() {
@@ -41,12 +42,17 @@ class BMRConfig {
         //guardar los datos y actualizar PrimeraSesion
     }
 
-    fun calcularBMR(edad: Int, genero: String, altura: Int, peso: Int) {
+    fun calcularBMR(edad: Int, genero: String, altura: Int, peso: Int): Double {
+        var result = 0.0
+        //extraer datos de UserData para rellenar la formula
         if (genero == "M") {
-            println("Man")
+            val mass = 1; val height = 1; val age = 1; val constM = 5.0
+            result = (10.0*mass/1 + 6.25*height/1 - 5.0*age/1 + constM) //formula BMR Hombre
         } else {
-            println("Women")
+            val mass = 1; val height = 1; val age = 1; val constF = -161.0
+            result = (10.0*mass/1 + 6.25*height/1 - 5.0*age/1 + constF) //formula BMR Mujer
         }
+        return result
     }
 
 }

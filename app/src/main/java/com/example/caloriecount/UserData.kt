@@ -23,5 +23,7 @@ class UserData(context:Context) {
         editor.apply()
     }
 
+    //puede retornar cualquier valor que necesitemos, asi que parseemos aqui
+
 
 }

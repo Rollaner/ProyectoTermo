@@ -12,13 +12,13 @@ import com.example.caloriecount.ui.theme.CalorieCountTheme
 //pega todos los otros modulos
 
 class MainActivity : ComponentActivity() {
+    private val userPrefs = UserData(this)
+    private val userHistory = UserHistory()
+    private val dailyScreen = DailyScreen()
+    private val bmrManager = BMRConfig(userPrefs)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val userPrefs = UserData(this)
-        val userHistory = UserHistory()
-        val dailyScreen = DailyScreen()
-        val bmrManager = BMRConfig()
         setContent {
             CalorieCountTheme {
                 Surface(color = MaterialTheme.colors.background) {
@@ -36,7 +36,6 @@ class MainActivity : ComponentActivity() {
     @Preview(showBackground = true, widthDp = 320)
     @Composable
     fun Preview() {
-        val bmrManager = BMRConfig()
         bmrManager.DatosInicio()
     }
 
