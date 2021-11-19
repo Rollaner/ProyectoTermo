@@ -2,6 +2,8 @@ package com.example.caloriecount
 
 import android.content.Context
 
+//guarda datos usuario, de momento preferencias (config y datos BMR)
+
 class UserData(context:Context) {
 
     private val PREFERENCE_NAME = "UserPrefs"
