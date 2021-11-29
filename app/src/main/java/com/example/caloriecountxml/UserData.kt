@@ -1,7 +1,11 @@
 package com.example.caloriecountxml
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
+
 import androidx.compose.ui.text.input.TextFieldValue
+import java.lang.reflect.GenericArrayType
 
 //guarda datos usuario, de momento preferencias (config y datos BMR)
 
@@ -12,7 +16,7 @@ class UserData(context:Context) {
     private val GENDER = "Genero"; private val AGE = "Edad"; private val HEIGHT = "Altura"
     private val MASS = "Peso"; private val EXERCISE = "NivelActividad"
 
-    private var userPrefs = context.getSharedPreferences(PREFERENCENAME, Context.MODE_PRIVATE) //conseguir
+    private var userPrefs : SharedPreferences = context.getSharedPreferences(PREFERENCENAME, MODE_PRIVATE) //conseguir
     //contexto preferencia
 
     fun getInitialLogin() : Boolean{
@@ -36,36 +40,47 @@ class UserData(context:Context) {
         editor.apply()
     }
 
-    fun getAge(): Double{
-        return userPrefs.getInt(AGE,1).toDouble()
+    fun getAge(): String{
+        return userPrefs.getString(AGE,"1").toString()
     }
 
-    fun getHeight() : Double{
-        return userPrefs.getInt(HEIGHT,1).toDouble()
+    fun getGender():String{
+        return userPrefs.getString(GENDER, "M").toString()
     }
 
-    fun getMass() : Double{
-        return userPrefs.getInt(MASS,1).toDouble()
+    fun getHeight() : String{
+        return userPrefs.getString(HEIGHT,"1").toString()
     }
 
-    fun editAge(value : TextFieldValue){
-        var prunedValue = value.toString().filter { it.isDigit() }
+    fun getMass() : String{
+        return userPrefs.getString(MASS,"1").toString()
+    }
+
+    fun editAge(value : String ){
+        var prunedValue = value.filter { it.isDigit() }
         val editor = userPrefs.edit()
-        editor.putInt(AGE, prunedValue.toInt())
+        editor.putString(AGE, prunedValue)
         editor.apply()
     }
 
-    fun editHeight(value: TextFieldValue){
-        var prunedValue = value.toString().filter { it.isDigit() }
+    fun editHeight(value : String){
+        var prunedValue = value.filter { it.isDigit() }
         val editor = userPrefs.edit()
-        editor.putInt(HEIGHT,prunedValue.toInt())
+        editor.putString(HEIGHT,prunedValue)
         editor.apply()
     }
 
-    fun editWeight(value: TextFieldValue){
-        var prunedValue = value.toString().filter { it.isDigit() }
+    fun editWeight(value : String){
+        var prunedValue = value.filter { it.isDigit() }
         val editor = userPrefs.edit()
-        editor.putInt(MASS,prunedValue.toInt())
+        editor.putString(MASS,prunedValue)
+        editor.apply()
+    }
+
+    fun editGender(value : String){
+        var pruneValue = value.filter { it.isUpperCase() }
+        val editor = userPrefs.edit()
+        editor.putString(GENDER, pruneValue)
         editor.apply()
     }
 

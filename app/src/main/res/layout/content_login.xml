@@ -8,20 +8,6 @@
     android:paddingTop="?attr/actionBarSize">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="376dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:autoSizeMaxTextSize="100sp"
-        android:autoSizeMinTextSize="30sp"
-        android:autoSizeStepGranularity="2sp"
-        android:autoSizeTextType="uniform"
-        android:text="@string/textview"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,30 +23,52 @@
 
     <RadioGroup
         android:id="@+id/GenderGroup"
-        android:layout_width="406dp"
-        android:layout_height="64dp"
+        android:layout_width="440dp"
+        android:layout_height="58dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="392dp"
         android:alwaysDrawnWithCache="false"
         android:animateLayoutChanges="true"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:id="@+id/radioSedentary"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="radioButtonE"
+            android:text="Once a week" />
+
+        <RadioButton
+            android:id="@+id/radioAverage"
+            android:layout_width="50dp"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:text="Every 3-5 Days"
+            android:onClick="radioButtonE"
+            tools:layout_editor_absoluteX="-81dp"
+            tools:layout_editor_absoluteY="674dp" />
+
+        <RadioButton
+            android:id="@+id/radioFitness"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:onClick="radioButtonE"
+            android:text="Everyday" />
+
     </RadioGroup>
 
     <View
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="7dp"
-        android:layout_marginTop="16dp"
         android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -102,7 +110,7 @@
     <EditText
         android:id="@+id/editTextNumber3"
         android:layout_width="215dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="96dp"
         android:ems="10"
@@ -112,19 +120,20 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submitbutton"
         android:layout_width="344dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
-        android:text="Button"
+        android:onClick="submitbuttonHandler"
+        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="320dp"
-        android:layout_height="57dp"
+        android:layout_width="322dp"
+        android:layout_height="43dp"
         android:layout_marginTop="56dp"
         android:baselineAligned="false"
         android:orientation="horizontal"
@@ -134,25 +143,31 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber3">
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radioM"
             android:layout_width="153dp"
             android:layout_height="match_parent"
-            android:text="@string/radiobutton" />
+            android:onClick="radioButtonG"
+            android:text="M"
+            tools:ignore="TouchTargetSizeCheck" />
+
 
         <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="165dp"
+            android:id="@+id/radioF"
+            android:layout_width="162dp"
             android:layout_height="match_parent"
-            android:text="@string/radiobutton2" />
+            android:onClick="radioButtonG"
+            android:text="F"
+            tools:ignore="TouchTargetSizeCheck" />
+
     </RadioGroup>
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_width="403dp"
+        android:layout_height="33dp"
+        android:text="How much exercice do you do?"
         app:layout_constraintBottom_toTopOf="@+id/GenderGroup"
-        tools:layout_editor_absoluteX="19dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView8"
@@ -162,5 +177,25 @@
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="410dp"
+        android:layout_height="65dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/design_default_color_primary">
+
+        <TextView
+            android:id="@+id/WelcomeText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Welcome to Calorie Count!"
+            android:textAllCaps="true"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            />
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
