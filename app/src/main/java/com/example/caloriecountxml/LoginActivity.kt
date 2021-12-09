@@ -9,6 +9,7 @@ import android.view.View
 
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.Toast
 
 
 class LoginActivity : AppCompatActivity() {
@@ -20,17 +21,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val ageEditText = findViewById<View>(R.id.editTextNumber) as EditText
-        age = ageEditText.text.toString()
-        val weightEditText = findViewById<View>(R.id.editTextNumber2) as EditText
-        //los datos estan pasando como strings vacias, el error esta ^ocurriendo alli^
-        // probablemente. Puesto que todos tienen valor por defecto
-        // (justamente para evitar este tipo de problemas)
-        //si alguien se atreve, lo invito a intentr arreglarlo antes que yo lo haga
-        //investigar "Como capturar user imput en android"
-        weight = weightEditText.text.toString()
-        val heightEditText = findViewById<View>(R.id.editTextNumber3) as EditText
-        height = heightEditText.text.toString()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.fab.setOnClickListener { view ->
@@ -89,6 +79,24 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun submitbuttonHandler(view: View?) {
+        val ageEditText = findViewById<View>(R.id.editTextNumber) as EditText
+        age = ageEditText.text.toString()
+        val weightEditText = findViewById<View>(R.id.editTextNumber2) as EditText
+        weight = weightEditText.text.toString()
+        val heightEditText = findViewById<View>(R.id.editTextNumber3) as EditText
+        height = heightEditText.text.toString()
+        if (age.isEmpty()) {
+            Toast.makeText(applicationContext, "Please enter your age", Toast.LENGTH_SHORT)
+                .show()
+        }
+        if (weight.isEmpty()){
+            Toast.makeText(applicationContext, "Please enter your weight",Toast.LENGTH_SHORT)
+                .show()
+        }
+        if(height.isEmpty()){
+            Toast.makeText(applicationContext, "Please enter your height", Toast.LENGTH_LONG)
+                .show()
+        }
         userData.editAge(age); userData.editHeight(height); userData.editWeight(weight)
         userData.editGender(gender); userData.editExercise(exercise)
         userData.editInitialLogin(false)

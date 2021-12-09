@@ -46,8 +46,8 @@
             android:layout_width="50dp"
             android:layout_height="58dp"
             android:layout_weight="1"
-            android:text="Every 3-5 Days"
             android:onClick="radioButtonE"
+            android:text="Every 3-5 Days"
             tools:layout_editor_absoluteX="-81dp"
             tools:layout_editor_absoluteY="674dp" />
 
@@ -88,11 +88,11 @@
         android:layout_width="216dp"
         android:layout_height="48dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="96dp"
         android:ems="10"
         android:hint="What's your age?"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
 
     <EditText
@@ -100,11 +100,11 @@
         android:layout_width="214dp"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="96dp"
         android:ems="10"
         android:hint="How much do you weight?"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <EditText
@@ -112,11 +112,11 @@
         android:layout_width="215dp"
         android:layout_height="48dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="96dp"
         android:ems="10"
         android:hint="How tall are you?"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
 
     <Button
@@ -181,21 +181,20 @@
     <androidx.cardview.widget.CardView
         android:layout_width="410dp"
         android:layout_height="65dp"
+        app:cardBackgroundColor="@color/design_default_color_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardBackgroundColor="@color/design_default_color_primary">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/WelcomeText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Welcome to Calorie Count!"
-            android:textAllCaps="true"
-            android:textAlignment="center"
             android:layout_marginTop="20dp"
-            android:textColor="@color/white"
-            />
+            android:text="Welcome to Calorie Count!"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
