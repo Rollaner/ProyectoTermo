@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
@@ -13,10 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
-        android:autoSizeMaxTextSize="30sp"
-        android:autoSizeMinTextSize="12sp"
-        android:autoSizeStepGranularity="1sp"
-        android:autoSizeTextType="uniform"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeStepGranularity="1sp"
+        app:autoSizeTextType="uniform"
         android:text="@string/politeString"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
@@ -39,7 +40,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="radioButtonE"
-            android:text="Once a week" />
+            android:text="@string/activitylvl_1" />
 
         <RadioButton
             android:id="@+id/radioAverage"
@@ -47,7 +48,7 @@
             android:layout_height="58dp"
             android:layout_weight="1"
             android:onClick="radioButtonE"
-            android:text="Every 3-5 Days"
+            android:text="@string/activitylvl_2"
             tools:layout_editor_absoluteX="-81dp"
             tools:layout_editor_absoluteY="674dp" />
 
@@ -57,7 +58,7 @@
             android:layout_height="58dp"
             android:layout_weight="1"
             android:onClick="radioButtonE"
-            android:text="Everyday" />
+            android:text="@string/activitylvl_3" />
 
     </RadioGroup>
 
@@ -89,7 +90,9 @@
         android:layout_height="48dp"
         android:layout_marginTop="28dp"
         android:ems="10"
-        android:hint="What's your age?"
+        android:hint="@string/agehint"
+        android:textColorHint="#757575"
+        android:importantForAutofill="no"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,11 +104,13 @@
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="How much do you weight?"
+        android:hint="@string/weighthint"
         android:inputType="number"
+        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editTextNumber3"
@@ -113,11 +118,13 @@
         android:layout_height="48dp"
         android:layout_marginTop="28dp"
         android:ems="10"
-        android:hint="How tall are you?"
+        android:hint="@string/heighthint"
+        android:textColorHint="#757575"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/submitbutton"
@@ -126,7 +133,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:onClick="submitbuttonHandler"
-        android:text="Submit"
+        android:text="@string/login_submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -147,7 +154,7 @@
             android:layout_width="153dp"
             android:layout_height="match_parent"
             android:onClick="radioButtonG"
-            android:text="M"
+            android:text="@string/gender_male"
             tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -156,7 +163,7 @@
             android:layout_width="162dp"
             android:layout_height="match_parent"
             android:onClick="radioButtonG"
-            android:text="F"
+            android:text="@string/gender_female"
             tools:ignore="TouchTargetSizeCheck" />
 
     </RadioGroup>
@@ -165,7 +172,7 @@
         android:id="@+id/textView7"
         android:layout_width="403dp"
         android:layout_height="33dp"
-        android:text="How much exercice do you do?"
+        android:text="@string/activity_question"
         app:layout_constraintBottom_toTopOf="@+id/GenderGroup"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -191,7 +198,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:text="Welcome to Calorie Count!"
+            android:text="@string/welcome_text"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/white" />

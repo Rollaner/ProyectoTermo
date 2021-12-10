@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CalorieCountXML</string>
+    <string name="app_name">CalorieCount</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -14,8 +14,24 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="textview">Welcome To CalorieCount!</string>
-    <string name="politeString">Please aswer the following questions to calculate your TDEE</string>
+    <string name="politeString">Please answer the following questions to calculate your TDEE</string>
     <string name="radiobutton">Male</string>
     <string name="radiobutton2">Female</string>
     <string name="textviewsomething">What\'s your gender?</string>
+    <string name="first_counter_line">You can eat:</string>
+    <string name="third_counter_line">kilocalories today</string>
+    <string name="calorie_edit_hint">Amount of calories (in kcal)</string>
+    <string name="add_calories_text">Add calories</string>
+    <string name="calorie_count">CalorieCount</string>
+    <string name="activitylvl_1">Once a week</string>
+    <string name="activitylvl_2">Every 3–5 Days</string>
+    <string name="activitylvl_3">Everyday</string>
+    <string name="agehint">What\'s your age?</string>
+    <string name="weighthint">How much do you weight?</string>
+    <string name="heighthint">How tall are you?</string>
+    <string name="login_submit">Submit</string>
+    <string name="gender_male">M</string>
+    <string name="gender_female">F</string>
+    <string name="activity_question">How much exercise do you do?</string>
+    <string name="welcome_text">Welcome to Calorie Count!</string>
 </resources>
