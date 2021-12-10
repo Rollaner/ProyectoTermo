@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun submitbuttonHandler(view: View?) {
+    fun submitbuttonHandler() {
         val ageEditText = findViewById<View>(R.id.editTextNumber) as EditText
         age = ageEditText.text.toString()
         val weightEditText = findViewById<View>(R.id.editTextNumber2) as EditText
