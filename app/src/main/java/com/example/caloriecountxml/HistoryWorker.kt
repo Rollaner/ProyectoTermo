@@ -42,4 +42,5 @@ class HistoryWorker (context: Context, workerParams: WorkerParameters) : Worker(
         }
         return Result.success()
     }
+
 }

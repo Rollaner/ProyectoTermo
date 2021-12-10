@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.preference.PreferenceManager //api preferencias actual
 import android.content.SharedPreferences
+import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -25,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var userTDEE : Double = 0.0
     private var totalCalories : Double = 0.0
-    private var timerAux = LocalDate.now()
     private var calorieCounter = userTDEE
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,11 +71,12 @@ class MainActivity : AppCompatActivity() {
                 .setInputData(workDataOf(
                     "TDEE" to "$userTDEE",
                     "CALORIES" to "$totalCalories",
-                    "DATE" to "$timerAux"
+                    "DATE" to "${LocalDate.now().dayOfMonth}"
                 ))
                 .build()
         //pone el proveso de guardado en queue, para ser realizado 1 vez por dia
         WorkManager.getInstance(this).enqueue(saveRequest)
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController) //NAV MENU (ROTO)
         setupSharedPreferences()
@@ -93,6 +94,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        object : CountDownTimer(9900, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                if(LocalTime.now().hour == 0)  calorieCounter = 0.0
+            }
+            override fun onFinish() {
+                cancel()
+                start()
+            }
+        }.start()
+
         val userData = UserData(this)
         val bmrManager = BMRConfig(userData)
         if(userData.getInitialLogin()){
@@ -101,6 +112,13 @@ class MainActivity : AppCompatActivity() {
         }
         bmrManager.calcularBMR(userData.getGender())
         userTDEE = bmrManager.calcularTDEE()
+    }
+
+    override fun onPause() {
+        super.onPause()
+            if(LocalTime.now().hour == 0){
+                calorieCounter = 0.0
+            }
     }
 
 }
