@@ -10,8 +10,6 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="textview">Welcome To CalorieCount!</string>
     <string name="politeString">Please answer the following questions to calculate your TDEE</string>
     <string name="radiobutton">Male</string>
@@ -20,15 +18,15 @@
     <string name="title_activity_main2">MainActivity2</string>
     <string name="first_counter_line">You can eat:</string>
     <string name="third_counter_line">kilocalories today</string>
-    <string name="calorie_edit_hint">Amount of calories (in kcal)</string>
+    <string name="calorie_edit_hint">Amount of calories(in kcal)</string>
     <string name="add_calories_text">Add calories</string>
     <string name="calorie_count">Calorie Count</string>
     <string name="activitylvl_1">Once a week</string>
     <string name="activitylvl_2">Every 3–5 Days</string>
     <string name="activitylvl_3">Everyday</string>
-    <string name="agehint">What\'s your age?</string>
-    <string name="weighthint">How much do you weight?</string>
-    <string name="heighthint">How tall are you?</string>
+    <string name="agehint">Enter your age in years</string>
+    <string name="weighthint">Enter your weight in kg</string>
+    <string name="heighthint">Enter your height in cm</string>
     <string name="login_submit">Submit</string>
     <string name="gender_male">M</string>
     <string name="gender_female">F</string>

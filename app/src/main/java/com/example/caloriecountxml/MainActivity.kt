@@ -6,43 +6,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import androidx.preference.PreferenceManager //api preferencias actual
-import android.content.SharedPreferences
 import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.work.*
 import java.time.*
-import com.example.caloriecountxml.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
     private var userTDEE : Double = 0.0
-    private var totalCalories : Double = 0.0
-    private var calorieCounter = userTDEE
+    private var calorieSum : Double = 0.0
+    private var remainingCalories = userTDEE
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val navView: BottomNavigationView = binding.navView
         setContentView(R.layout.activity_main)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         val dynamic = findViewById<View>(R.id.calorieDynamicText) as TextView
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        dynamic.text = "$userTDEE"
         val calorieSubmitButton: Button = findViewById(R.id.CalorieButton)
         val calorieEditText: EditText = findViewById(R.id.CalorieEditText)
         calorieSubmitButton.setOnClickListener {
@@ -51,13 +31,13 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Please enter an amount of calories", Toast.LENGTH_SHORT)
                     .show()
             } else {
-                if(calorieCounter > 0)
-                    dynamic.text = "$calorieCounter"
+                calorieSum += calorieData.toDouble()
+                remainingCalories = userTDEE - calorieSum // x -= y es equivalente a x = x-y
+                if(remainingCalories > 0)
+                    dynamic.text = "$remainingCalories"
                 else
                     dynamic.text = "0"
-                totalCalories += calorieData.toDouble()
-                calorieCounter = userTDEE - totalCalories // x -= y es equivalente a x = x-y
-                Toast.makeText(applicationContext, "$calorieData calories", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Added $calorieData kilocalories", Toast.LENGTH_SHORT).show()
             }
         }
         //trabajo cada 24 horas si y solo si el dispositivo tiene espacio disponible.
@@ -70,15 +50,12 @@ class MainActivity : AppCompatActivity() {
                 .setConstraints(constraints)
                 .setInputData(workDataOf(
                     "TDEE" to "$userTDEE",
-                    "CALORIES" to "$totalCalories",
+                    "CALORIES" to "$calorieSum",
                     "DATE" to "${LocalDate.now().dayOfMonth}"
                 ))
                 .build()
         //pone el proveso de guardado en queue, para ser realizado 1 vez por dia
         WorkManager.getInstance(this).enqueue(saveRequest)
-
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController) //NAV MENU (ROTO)
         setupSharedPreferences()
     }
 
@@ -86,17 +63,17 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
     } //para hacer cambios dinamicos en la app segun las settings, aunque dudo que
     // lo usemos
-
+    /*
     @Override
     fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
     }
-    //complemento al anterior
+    //complemento al anterior*/
 
     override fun onStart() {
         super.onStart()
         object : CountDownTimer(9900, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                if(LocalTime.now().hour == 0)  calorieCounter = 0.0
+                if(LocalTime.now().hour == 0)  calorieSum = 0.0
             }
             override fun onFinish() {
                 cancel()
@@ -112,12 +89,29 @@ class MainActivity : AppCompatActivity() {
         }
         bmrManager.calcularBMR(userData.getGender())
         userTDEE = bmrManager.calcularTDEE()
+        val dynamic = findViewById<View>(R.id.calorieDynamicText) as TextView
+        dynamic.text = "$userTDEE"
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val dynamic = findViewById<View>(R.id.calorieDynamicText) as TextView
+        if(userTDEE != remainingCalories) {
+            userTDEE = remainingCalories //para mantener consistencia al pausar la app
+        }
+        if(calorieSum == 0.0){
+            val userData = UserData(this)
+            val bmrManager = BMRConfig(userData)
+            bmrManager.calcularBMR(userData.getGender())
+            userTDEE = bmrManager.calcularTDEE()
+        }
+        dynamic.text = "$userTDEE"
     }
 
     override fun onPause() {
         super.onPause()
             if(LocalTime.now().hour == 0){
-                calorieCounter = 0.0
+                calorieSum = 0.0
             }
     }
 

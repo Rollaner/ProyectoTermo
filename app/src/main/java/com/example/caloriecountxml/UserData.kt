@@ -4,9 +4,6 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 
-import androidx.compose.ui.text.input.TextFieldValue
-import java.lang.reflect.GenericArrayType
-
 //guarda datos usuario, de momento preferencias (config y datos BMR)
 
 class UserData(context:Context) {
@@ -40,45 +37,46 @@ class UserData(context:Context) {
         editor.apply()
     }
 
-    fun getAge(): String{
-        return userPrefs.getString(AGE,"1").toString()
+    fun getAge(): String?{
+        return userPrefs.getString(AGE,"1")
     }
 
     fun getGender():String{
         return userPrefs.getString(GENDER, "M").toString()
     }
 
-    fun getHeight() : String{
-        return userPrefs.getString(HEIGHT,"1").toString()
+    fun getHeight() : String?{
+        return userPrefs.getString(HEIGHT,"1")
     }
 
-    fun getMass() : String{
-        return userPrefs.getString(MASS,"1").toString()
+
+    fun getMass() : String? {
+        return userPrefs.getString(MASS,"1")
     }
 
     fun editAge(value : String ){
-        var prunedValue = value.filter { it.isDigit() }
+        val prunedValue = value.filter { it.isDigit() }
         val editor = userPrefs.edit()
         editor.putString(AGE, prunedValue)
         editor.apply()
     }
 
     fun editHeight(value : String){
-        var prunedValue = value.filter { it.isDigit() }
+        val prunedValue = value.filter { it.isDigit() }
         val editor = userPrefs.edit()
         editor.putString(HEIGHT,prunedValue)
         editor.apply()
     }
 
     fun editWeight(value : String){
-        var prunedValue = value.filter { it.isDigit() }
+        val prunedValue = value.filter { it.isDigit() }
         val editor = userPrefs.edit()
         editor.putString(MASS,prunedValue)
         editor.apply()
     }
 
     fun editGender(value : String){
-        var pruneValue = value.filter { it.isUpperCase() }
+        val pruneValue = value.filter { it.isUpperCase() }
         val editor = userPrefs.edit()
         editor.putString(GENDER, pruneValue)
         editor.apply()

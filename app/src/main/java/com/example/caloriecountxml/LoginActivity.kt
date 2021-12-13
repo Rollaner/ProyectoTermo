@@ -3,7 +3,6 @@ package com.example.caloriecountxml
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.ui.AppBarConfiguration
 import com.example.caloriecountxml.databinding.ActivityLoginBinding
 import android.view.View
 
@@ -14,7 +13,6 @@ import android.widget.Toast
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var userData : UserData
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityLoginBinding
     private lateinit  var age : String ; private lateinit  var height : String ; private lateinit  var weight :String
     private lateinit var gender : String; private lateinit var exercise : String
@@ -78,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun submitbuttonHandler() {
+    fun submitbuttonHandler(view: View?) {
         val ageEditText = findViewById<View>(R.id.editTextNumber) as EditText
         age = ageEditText.text.toString()
         val weightEditText = findViewById<View>(R.id.editTextNumber2) as EditText
