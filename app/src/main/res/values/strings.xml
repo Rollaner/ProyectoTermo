@@ -1,21 +1,11 @@
 <resources>
     <string name="app_name">CalorieCount</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_activity_login">LoginActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="textview">Welcome To CalorieCount!</string>
     <string name="politeString">Please answer the following questions to calculate your TDEE</string>
-    <string name="radiobutton">Male</string>
-    <string name="radiobutton2">Female</string>
     <string name="textviewsomething">What\'s your gender?</string>
-    <string name="title_activity_main2">MainActivity2</string>
     <string name="first_counter_line">You can eat:</string>
     <string name="third_counter_line">kilocalories today</string>
     <string name="calorie_edit_hint">Amount of calories(in kcal)</string>
